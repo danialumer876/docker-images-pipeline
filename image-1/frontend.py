@@ -2,16 +2,23 @@ import os
 from flask import Flask
 import datetime
 import requests
+import pytz
 from datetime import date
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():  
+   
+    
     response = requests.get('http://backend-service:5100/response')
+    
+    pakistan_timezone = pytz.timezone("Asia/Karachi")
+    current_time_in_pakistan = datetime.datetime.now(pakistan_timezone)   
+    
     e = datetime.datetime.now()
     data = response.json()
-    return f"{e.day}/{e.month}/{e.year}  Hello {data['name']}"
+    return f"{e.day}/{e.month}/{e.year} {current_time_in_pakistan} Hello {data['name']}"
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5200)
