@@ -14,11 +14,9 @@ def hello():
     response = requests.get('http://backend-service:5100/response')
     
     pakistan_timezone = pytz.timezone("Asia/Karachi")
-    current_time_in_pakistan = datetime.datetime.now(pakistan_timezone)   
-    
-    e = datetime.datetime.now()
+    e = datetime.datetime.now(pakistan_timezone)   
     data = response.json()
-    return f"{e.day}/{e.month}/{e.year} {current_time_in_pakistan} Hello {data['name']}"
+    return f"{e.day}/{e.month}/{e.year} {e.hour}:{e.minute} Hello {data['name']}"
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5200)
