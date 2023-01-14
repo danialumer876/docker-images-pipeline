@@ -14,9 +14,9 @@ pipeline {
                     for (int i = 0; i < images.size(); i++) {
                         def image = images[i]
                         dir("image-${i+1}") {
-                            sh "docker build -t $image ."
+                            sh "sudo docker build -t $image ."
                             sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                            sh "docker push $image"
+                            sh "sudo docker push $image"
                         }
                     }
                 }
