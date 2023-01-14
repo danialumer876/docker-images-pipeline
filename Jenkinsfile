@@ -12,11 +12,11 @@ pipeline {
         stage('Build and Push frontend Image') {
             steps {
                 script {
-                        def image = danialumer876/frontend:latest
+                        def image1 = [danialumer876/frontend:latest]
                         dir("image-1") {
-                            sh "sudo docker build -t $image ."
+                            sh "sudo docker build -t $image1 ."
                             sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                            sh "sudo docker push $image"
+                            sh "sudo docker push $image1"
                             sh 'sudo docker logout'
                         }
                     
@@ -27,11 +27,11 @@ pipeline {
         stage('Build and Push backend Image') {
             steps {
                 script {
-                        def image = danialumer876/backend:latest
+                        def image2 = [danialumer876/backend:latest]
                         dir("image-2") {
-                            sh "sudo docker build -t $image ."
+                            sh "sudo docker build -t $image2 ."
                             sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                            sh "sudo docker push $image"
+                            sh "sudo docker push $image2"
                             sh 'sudo docker logout'
                         }
                     
