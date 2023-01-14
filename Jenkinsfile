@@ -4,8 +4,10 @@ pipeline {
       DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
-        stage('Checkout Git Repo'){
+        stage('Checkout Git Repo') {
+            steps {
             checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/danialumer876/docker-images-pipeline.git']])
+            }
         }
         stage('Build and Push Images') {
             steps {
