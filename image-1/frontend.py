@@ -11,7 +11,7 @@ app = Flask(__name__)
 def hello():  
    
     
-    response = requests.get('http://backend-service:5100/response')
+    response = requests.get('http://internproject-backend:5100/response')
     
     pakistan_timezone = pytz.timezone("Asia/Karachi")
     e = datetime.datetime.now(pakistan_timezone)   
