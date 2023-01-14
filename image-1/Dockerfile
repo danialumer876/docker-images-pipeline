@@ -8,6 +8,7 @@ COPY . .
 RUN pip install -r requirements.txt
 RUN pip install requests
 RUN pip install jsonify
+RUN pip install pytz
 # Expose the Docker container for the application to run on port 5000
 EXPOSE 5200
 # The command required to run the Dockerized application
