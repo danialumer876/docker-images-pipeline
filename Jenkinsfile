@@ -32,7 +32,7 @@ pipeline {
                             sh "sudo docker build -t $image2 ."
                             sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                             sh "sudo docker push $image2"
-                            sh 'sudo docker logout'
+                            sh ' docker logout'
                         }
                     
                 }
