@@ -14,10 +14,10 @@ pipeline {
                 script {
                         def image1 = 'danialumer876/frontend:latest'
                         dir("image-1") {
-                            sh "sudo docker build -t $image1 ."
-                            sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                            sh "sudo docker push $image1"
-                            sh 'sudo docker logout'
+                            sh " docker build -t $image1 ."
+                            sh ' echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                            sh " docker push $image1"
+                            sh ' docker logout'
                         }
                     
                 }
