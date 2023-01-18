@@ -45,7 +45,9 @@ pipeline {
                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/danialumer876/intern-project-final.git']])
 
                    
-                   sh 'kubectl apply -f intern-project-final/'
+                   sh 'kubectl apply -f services/'
+                       sh 'kubectl apply -f deployments/'
+                       sh 'kubectl apply -f configMap.yml'
                        
                    }
             }
