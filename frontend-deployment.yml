@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: internproject-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: internproject-frontend
+  template:
+    metadata:
+      labels:
+        app: internproject-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: danialumer876/frontend:latest
+        ports:
+        - containerPort: 5200
+        env:
+        - name: frontend-server
+          valueFrom:
+            configMapKeyRef:
+              name: internproject-configmap
+              key: backendUrl
+---
+
+
