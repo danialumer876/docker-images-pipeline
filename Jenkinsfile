@@ -41,10 +41,10 @@ pipeline {
         }
         stage('Deploying App to Kubernetes') {
             steps {
-                script {
-                         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/danialumer876/docker-images-pipeline.git']])
-                          kubernetesDeploy(configs: "completeproject.yml", kubeconfigId: "mykubeconfig")
-                }
+                   withKubeConfig([credentialsId: 'mykubeconfig']) {
+                   sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
+                   sh 'kubectl apply -f service.yaml'
+                   }
             }
         }
     }
