@@ -42,8 +42,11 @@ pipeline {
         stage('Deploying App to Kubernetes') {
             steps {
                    withKubeConfig([credentialsId: 'mykubeconfig']) {
+                   checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/danialumer876/intern-project-final.git']])
+
                    
-                   sh 'kubectl apply -f frontend-deployment.yml'
+                   sh 'kubectl apply -f intern-project-final/'
+                       
                    }
             }
         }
