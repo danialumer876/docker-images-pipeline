@@ -10,8 +10,8 @@ app = Flask(__name__)
 @app.route('/')
 def hello():  
    
-    
-    response = requests.get('http://internproject-backend:5100/response')
+    backend_url = os.environ.get("frontend-server")
+    response = requests.get(f"http://{backend_url}:5100/response")
     
     pakistan_timezone = pytz.timezone("Asia/Karachi")
     e = datetime.datetime.now(pakistan_timezone)   
